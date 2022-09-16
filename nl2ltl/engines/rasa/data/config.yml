@@ -1,0 +1,17 @@
+# Configuration for Rasa NLU.
+# https://rasa.com/docs/rasa/nlu/components/
+recipe: default.v1
+language: en
+
+pipeline:
+  - name: WhitespaceTokenizer
+  - name: RegexFeaturizer
+  - name: LexicalSyntacticFeaturizer
+  - name: CountVectorsFeaturizer
+  - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 1
+    max_ngram: 4
+  - name: DIETClassifier
+    epochs: 1000
+  - name: EntitySynonymMapper

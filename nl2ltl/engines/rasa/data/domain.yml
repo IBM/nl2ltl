@@ -1,0 +1,9 @@
+intents:
+  - existence
+  - existenceTwo
+  - response
+  - chainResponse
+  - respondedExistence
+
+entities:
+  - connector

@@ -1,0 +1,26 @@
+site_name: NL2LTL
+repo_name: 'NL2LTL'
+repo_url: https://github.ibm.com/Francesco-Fuggitti/nl2ltl
+
+nav:
+- Home: index.md
+
+theme:
+  name: readthedocs
+  feature:
+    tabs: true
+
+strict: true
+
+markdown_extensions:
+- codehilite
+- pymdownx.arithmatex
+- pymdownx.superfences
+- pymdownx.highlight
+- admonition
+- markdown_include.include:
+    base_path: docs
+
+extra_javascript:
+- 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
+- 'https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'

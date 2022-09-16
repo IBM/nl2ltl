@@ -1,0 +1,76 @@
+nlu:
+- intent: existence
+  examples: |
+    - Create a [Slack](connector) translation bot
+    - Send me a [Slack](connector) message
+    - Download a PDF attachment from [Salesforce](connector)
+    - Invite [Sales](connector) employees sooner or later
+    - Add new [Eventbrite](connector) attendees to MailChimp lists
+    - Copy products from PostgreSQL database to [Salesforce](connector)
+    - Populate a [Salesforce](connector) campaign
+    - Extract [Salesforce](connector) lead details
+    - Invite [Sales](connector) employees
+    - Invite Sales employees to an [Eventbrite](connector) event
+    - Use [Slack](connector) to notify of unprocessed Kronos leave requests
+- intent: existenceTwo
+  examples: |
+    - extract [Salesforce](connector) lead details at least twice
+    - notify me through [Slack](connector) at least twice before an event
+    - remind me twice for the [Event](connector)
+    - Synchronize data between [SAP and Salesforce](connector) at least twice
+    - Sync [Salesforce](connector) new cases at least two times
+- intent: response
+  examples: |
+    - every time a response is created in [SurveyMonkey](connector), create an object in [Amazon S3](connector)
+    - always Create a new contact in [Acoustic Campaign](connector) when a new contact is added in [Salesforce](connector)
+    - Create a new [Trello](connector) card at some point whenever a new event in [Eventbrite](connector) is added
+    - eventually Send a [Microsoft Teams](connector) message whenever a response is created in [SurveyMonkey](connector)
+    - eventually Synchronize data between [SAP and Salesforce](connector) whenever the [Salesforce](connector) contact is being updated
+    - whenever a response is created in [SurveyMonkey](connector), create an object in [Amazon S3](connector)
+    - for every resolved case in [Microsoft Dynamics 365](connector), send a [Slack](connector) notification
+    - Send a [Slack](connector) message every time a high or highest priority issue is created in [Jira](connector)
+    - send a [Gmail](connector) whenever I get a [Slack](connector) message
+    - send me an [Email](connector) every time I get a [Slack](connector) message    
+    - Send a [Slack](connector) message whenever a response is created in [SurveyMonkey](connector)
+    - whenever a new lead is added in [Marketo](connector), add a card to a list in [Trello](connector) sometime after
+- intent: chainResponse
+  examples: |
+    - every time an [Eventbrite](connector) is added, notify me via [Slack](connector) right after
+    - every time there is a new [Salesforce](connector) campaign, immediately create a new [Trello](connector) card
+    - open a ticket on [ServiceNow](connector) immediately after receiving an identified issue in [Slack](connector)
+    - every time there is a new [Salesforce](connector) case, create a new [Trello](connector) card for it right after
+    - Send me a [Slack](connector) notification straight after a new [Asana](connector) task is created
+    - immediately create a case in [Salesforce](connector) after a new incident is created in [ServiceNow](connector)
+    - Open a ticket on [ServiceNow](connector) after receiving an identified issue in [Slack](connector)
+    - send me a [Slack](connector) right after receiving an [Hotmail](connector)
+    - Sync [Salesforce](connector) data right after a [Gmail](connector) contact is being updated
+- intent: respondedExistence
+  examples: |
+    - Create a new [Trello](connector) card for a new [Salesforce](connector) campaign
+    - if a new [Insightly](connector) contact is created, then send me a [Slack](connector) notification
+    - if a response is created in [SurveyMonkey](connector), then Send a [Slack](connector) message
+    - make sure that if I receive a [Gmail](connector), then either I have already received a [Slack](connector) message before or I will be receiving it
+    - synchronize [Salesforce](connector) leads either before or after updating the [Salesforce](connector) account
+    - send a [Gmail](connector) message when a new event is added in [Eventbrite](connector)
+
+- lookup: connector
+  examples: |
+    - Slack
+    - Gmail
+    - Eventribe
+    - Asana
+    - Microsoft Teams
+    - Salesforce
+    - Sales
+    - Event
+    - SAP and Salesforce
+    - Trello
+    - Acoustic Campaign
+    - Amazon S3
+    - ServiceNow
+    - Microsoft Dynamics 365
+    - Jira
+    - Marketo
+    - Email
+    - Hotmail
+    - Insightly
