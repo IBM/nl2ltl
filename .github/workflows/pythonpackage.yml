@@ -1,4 +1,4 @@
-name: NL2LTL Continuous Integration pipeline.
+name: CI
 
 on:
   push:
