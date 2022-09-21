@@ -10,6 +10,8 @@
 nl2ltl/engines/rasa/.rasa
 nl2ltl/engines/rasa/models/nlu*
 
+nl2ltl/engines/gpt3/env.py
+
 
 # User-specific stuff
 .idea/**/workspace.xml
