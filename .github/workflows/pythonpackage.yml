@@ -33,5 +33,7 @@ jobs:
     - name: Unit tests and coverage
       run: |
         tox -e py${{ matrix.python-version }}
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     - name: Generate Documentation
       run: tox -e docs
