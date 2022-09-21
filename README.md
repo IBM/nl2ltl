@@ -43,7 +43,7 @@ For instance, Rasa requires a `.tar.gz` format trained model in the
 
 ## NLU Engines
 - [x] [Rasa](https://rasa.com/) intents/entities classifier
-- [ ] [GPT-3](https://openai.com/api/) language model -- Experimental
+- [x] [GPT-3](https://openai.com/api/) large language model
 - [ ] [Watson Assistant](https://www.ibm.com/products/watson-assistant) intents/entities classifier -- Planned
 
 ## Write your own Engine
