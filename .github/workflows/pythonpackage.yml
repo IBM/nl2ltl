@@ -24,7 +24,10 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
-      run:  pip install tox
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install tox
     - name: Code style Check
       run:  tox -e precommit
     - name: Unit tests and coverage
