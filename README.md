@@ -98,7 +98,7 @@ ltl_formulas = translate(utterance, engine=my_engine, filter=my_filter)
 
 Contributions are welcome! Here's how to set up the development environment:
 - install [Pipenv](https://pipenv-fork.readthedocs.io/en/latest/)
-- clone the repo: `git clone https://github.ibm.com/Francesco-Fuggitti/nl2ltl.git && cd nl2ltl`
+- clone the repo: `git clone https://github.com/IBM/nl2ltl.git && cd nl2ltl`
 - install dev dependencies: `pipenv shell --python 3.8 && pipenv install --dev`
 
 ## Tests
