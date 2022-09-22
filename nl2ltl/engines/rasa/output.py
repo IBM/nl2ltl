@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 
 """Parse Rasa output to produce Dict[Formula, Float] result."""
-import difflib
 from dataclasses import dataclass
-from typing import Any, Callable, Dict, Set
+from typing import Any, Dict
 
 from pylogics.syntax.base import Formula
 
-from nl2ltl.declare.base import TemplateEnum
+from nl2ltl.engines.utils import _get_formulas
 from nl2ltl.filters.base import Filter
 
 
@@ -73,25 +72,6 @@ def parse_rasa_output(rasa_output: dict) -> RasaOutput:
     intent_ranking: Dict[str, float] = wrapper.intent_ranking
     rasa_result = RasaOutput(text, intent, entities, intent_ranking)
     return rasa_result
-
-
-def _get_formulas(name: str, args: Dict[str, float]) -> Set[Formula]:
-    """Instantiate matching formulas based on intent name and entities."""
-    import nl2ltl.declare.declare
-    import nl2ltl.engines.grounding
-
-    class_name_match = difflib.get_close_matches(
-        name, [x.value for x in TemplateEnum], n=1
-    )
-    grounding_map: Dict[str, Callable] = {}
-    for c_name in TemplateEnum:
-        grounding_map[c_name.value] = getattr(
-            nl2ltl.engines.grounding, f"ground_{c_name.value.lower()}"
-        )
-
-    grounding_func: Callable = grounding_map[str(class_name_match[0])]
-    grounded_formulas: Set[Formula] = grounding_func(args)
-    return grounded_formulas
 
 
 def parse_rasa_result(

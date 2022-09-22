@@ -8,11 +8,11 @@ linear temporal logic (LTL) formulas.
 ## Installation
 - from source (`main` branch):
 ```bash
-pip install git+https://github.ibm.com/Francesco-Fuggitti/nl2ltl.git
+pip install git+https://github.com/IBM/nl2ltl.git 
 ```
 - or clone the repository and install the package:
 ```bash
-git clone https://github.ibm.com/Francesco-Fuggitti/nl2ltl.git
+git clone https://github.com/IBM/nl2ltl.git
 cd nl2ltl
 pip install .
 ```
@@ -43,8 +43,13 @@ For instance, Rasa requires a `.tar.gz` format trained model in the
 
 ## NLU Engines
 - [x] [Rasa](https://rasa.com/) intents/entities classifier
-- [ ] [GPT-3](https://openai.com/api/) language model -- Experimental
+- [x] [GPT-3](https://openai.com/api/) large language model
 - [ ] [Watson Assistant](https://www.ibm.com/products/watson-assistant) intents/entities classifier -- Planned
+
+To use GPT-3 you need to have an API KEY set as environment variable as follows:
+```bash
+export OPENAI_API_KEY=your_api_key
+```
 
 ## Write your own Engine
 You can easily write your own engine (i.e., intents/entities classifier, 
@@ -93,7 +98,7 @@ ltl_formulas = translate(utterance, engine=my_engine, filter=my_filter)
 
 Contributions are welcome! Here's how to set up the development environment:
 - install [Pipenv](https://pipenv-fork.readthedocs.io/en/latest/)
-- clone the repo: `git clone https://github.ibm.com/Francesco-Fuggitti/nl2ltl.git && cd nl2ltl`
+- clone the repo: `git clone https://github.com/IBM/nl2ltl.git && cd nl2ltl`
 - install dev dependencies: `pipenv shell --python 3.8 && pipenv install --dev`
 
 ## Tests

@@ -9,6 +9,9 @@
 # custom
 nl2ltl/engines/rasa/.rasa
 nl2ltl/engines/rasa/models/nlu*
+!nl2ltl/engines/rasa/models/nlu-20220921-165608-buoyant-volley.tar.gz
+
+nl2ltl/engines/gpt3/env.py
 
 
 # User-specific stuff

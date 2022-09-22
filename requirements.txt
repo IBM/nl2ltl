@@ -1,2 +1,3 @@
 rasa==3.2.4
+openai==0.23.0
 pylogics==0.1.1
