@@ -26,3 +26,12 @@ def _get_formulas(name: str, args: Dict[str, float]) -> Set[Formula]:
     grounding_func: Callable = grounding_map[str(class_name_match[0])]
     grounded_formulas: Set[Formula] = grounding_func(args)
     return grounded_formulas
+
+
+def pretty(result: Dict[Formula, float]):
+    """Pretty print Rasa output."""
+    print("=" * 150)
+    for k, v in result.items():
+        print(f"Declare Template: {str(k)}", end="\n")
+        print(f"English meaning:  {k.to_english()}", end="\n")
+        print(f"Confidence:       {str(v)}", end="\n\n")
