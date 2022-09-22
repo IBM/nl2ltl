@@ -24,7 +24,7 @@ class TestGPT3:
         cls.basic_filter = BasicFilter()
 
     @pytest.mark.parametrize("utterance", UtterancesFixtures.utterances)
-    def test_rasa_engine(self, utterance):
-        """Test Rasa engine for utterances."""
+    def test_gpt3_engine(self, utterance):
+        """Test GPT-3 engine for utterances."""
         output = translate(utterance, self.gpt3_engine, self.basic_filter)
         assert isinstance(output, Dict)
