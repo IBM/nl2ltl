@@ -4,9 +4,6 @@
 import glob
 import os
 from pathlib import Path
-from typing import Dict
-
-from pylogics.syntax.base import Formula
 
 
 def _get_latest_model(path: Path):
