@@ -6,8 +6,8 @@ from typing import Dict
 from pylogics.syntax.base import Formula
 
 from nl2ltl.filters.base import Filter
-from nl2ltl.filters.utils.subsumptions import subsumptions
 from nl2ltl.filters.utils.conflicts import conflicts
+from nl2ltl.filters.utils.subsumptions import subsumptions
 
 
 class BasicFilter(Filter):
@@ -17,7 +17,7 @@ class BasicFilter(Filter):
 
     @staticmethod
     def enforce(
-            output: Dict[Formula, float], entities: Dict[str, float], **kwargs
+        output: Dict[Formula, float], entities: Dict[str, float], **kwargs
     ) -> Dict[Formula, float]:
         """
         Enforce conflicts and subsumptions to output formulas.
@@ -36,7 +36,7 @@ class GreedyFilter(Filter):
 
     @staticmethod
     def enforce(
-            output: Dict[Formula, float], entities: Dict[str, float], **kwargs
+        output: Dict[Formula, float], entities: Dict[str, float], **kwargs
     ) -> Dict[Formula, float]:
         """
         Enforce conflicts and subsumptions to output formulas.
