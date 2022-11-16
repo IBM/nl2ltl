@@ -124,3 +124,16 @@ To build the docs: `mkdocs build`
 To view documentation in a browser: `mkdocs serve`
 and then go to [http://localhost:8000](http://localhost:8000)
 
+## Citing
+
+```
+@inproceedings{aaai2023fc,
+  author       = {Francesco Fuggitti and  Tathagata Chakraborti},
+  title        = {{NL2LTL} -- A Python Package for Converting Natural Language ({NL}) Instructions to Linear Temporal Logic ({LTL}) Formulas},
+  booktitle    = {{AAAI}},
+  year         = {2023},
+  note         = {System Demonstration.},
+  url_code     = {https://github.com/IBM/nl2ltl},
+}
+```
+
