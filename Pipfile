@@ -6,18 +6,18 @@ name = "pypi"
 [packages]
 
 [dev-packages]
-pytest = "*"
-pre-commit = "*"
 black = "*"
 flake8 = "*"
 hypothesis = "*"
+isort = "*"
 mkdocs = "*"
-tox = "*"
-mkdocs-material = "*"
 mknotebooks = "*"
 markdown-include = "*"
+mkdocs-material = "*"
+pre-commit = "*"
 pymdown-extensions = "*"
-isort = "*"
+pytest = "*"
+tox = "*"
 
 [requires]
 python_version = "3.8"

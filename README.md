@@ -52,11 +52,16 @@ For instance, Rasa requires a `.tar.gz` format trained model in the
 ## NLU Engines
 - [x] [Rasa](https://rasa.com/) intents/entities classifier
 - [x] [GPT-3](https://openai.com/api/) large language model
+- [x] [GPT-4](https://openai.com/api/) large language model
 - [ ] [Watson Assistant](https://www.ibm.com/products/watson-assistant) intents/entities classifier -- Planned
 
-To use GPT-3 you need to have an API KEY set as environment variable as follows:
+To use GPT-3 you need to have an API KEY set as environment variable. To set it, either you export it with:
 ```bash
 export OPENAI_API_KEY=your_api_key
+```
+or you specify it within a `.env` file in the root folder of the project:
+```bash
+OPENAI_API_KEY=your_api_key
 ```
 
 ## Write your own Engine
