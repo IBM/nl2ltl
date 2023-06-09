@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Parse GPT-3 output to produce Dict[Formula, Float] result."""
+"""Parse GPT output to produce Dict[Formula, Float] result."""
 import re
 from dataclasses import dataclass
 from typing import Dict, Match, Set, Tuple, cast
@@ -12,8 +12,8 @@ from nl2ltl.filters.base import Filter
 
 
 @dataclass
-class GPT3Output:
-    """Dataclass to represent the GPT-3 output."""
+class GPTOutput:
+    """Dataclass to represent the GPT output."""
 
     pattern: str
     entities: Tuple[str]
@@ -25,8 +25,8 @@ class GPT3Output:
 
 
 @dataclass
-class _GPT3OutputWrapper:
-    """A wrapper to the textual output of GPT-3."""
+class _GPTOutputWrapper:
+    """A wrapper to the textual output of GPT."""
 
     output: dict
 
@@ -52,22 +52,22 @@ class _GPT3OutputWrapper:
         )
 
 
-def parse_gpt3_output(gpt3_output: dict) -> GPT3Output:
+def parse_gpt_output(gpt_output: dict) -> GPTOutput:
     """
-    Parse the GPT-3 output.
+    Parse the GPT output.
 
-    :param gpt3_output: the json description of the GPT-3 prediction.
-    :return: a GPT3Output instance.
+    :param gpt_output: the json description of the GPT prediction.
+    :return: a GPTOutput instance.
     """
-    wrapper = _GPT3OutputWrapper(gpt3_output)
+    wrapper = _GPTOutputWrapper(gpt_output)
     pattern: str = wrapper.pattern
     entities: Tuple[str] = wrapper.entities
-    gpt3_result = GPT3Output(pattern, entities)
-    return gpt3_result
+    gpt_result = GPTOutput(pattern, entities)
+    return gpt_result
 
 
-def parse_gpt3_result(
-    output: GPT3Output, filtering: Filter = None
+def parse_gpt_result(
+    output: GPTOutput, filtering: Filter = None
 ) -> Dict[Formula, float]:
     """
     Build a dict of formulas, given the GPT3Output object.

@@ -41,14 +41,20 @@ class RasaEngine(Engine):
         """Rasa NLU Engine initialization."""
         self._load_model(model)
 
+        self._check_consistency()
+
     def _load_model(self, model: Path = None):
         if model:
             self.agent = Agent.load(model)
         else:
             self.agent = Agent.load(_get_latest_model(path=MODEL_OUTPUT_PATH))
 
-    @classmethod
-    def __check_rasa_available(cls):
+    def _check_consistency(self) -> None:
+        """Run consistency checks."""
+        self.__check_rasa_available()
+        self.__check_rasa_version()
+
+    def __check_rasa_available(self):
         """Check that the Rasa tool is available."""
         is_rasa_present = shutil.which("rasa") is not None
         if is_rasa_present is None:
@@ -57,8 +63,7 @@ class RasaEngine(Engine):
                 "the installation instructions at https://rasa.com/docs/rasa/installation.\n"
             )
 
-    @classmethod
-    def __check_rasa_version(cls):
+    def __check_rasa_version(self):
         """Check that the Rasa tool is at the right version."""
         is_right_version = rasa.__version__ == "3.5.11"
         if not is_right_version:
@@ -68,11 +73,6 @@ class RasaEngine(Engine):
                 "\n"
                 "pip install rasa==3.5.11"
             )
-
-    def __post_init__(self):
-        """Do post-initialization checks."""
-        self.__check_rasa_available()
-        self.__check_rasa_version()
 
     @staticmethod
     def train(
