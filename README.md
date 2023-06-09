@@ -55,7 +55,7 @@ For instance, Rasa requires a `.tar.gz` format trained model in the
 - [x] [GPT-4](https://openai.com/api/) large language model
 - [ ] [Watson Assistant](https://www.ibm.com/products/watson-assistant) intents/entities classifier -- Planned
 
-To use GPT-3 you need to have an API KEY set as environment variable. To set it, either you export it with:
+To use GPT models you need to have an API KEY set as environment variable. To set it, either you export it with:
 ```bash
 export OPENAI_API_KEY=your_api_key
 ```

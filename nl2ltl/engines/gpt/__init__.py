@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Implementation of the GPT-3 engine."""
+"""Implementation of the GPT engine."""
 
 import inspect
 from pathlib import Path
