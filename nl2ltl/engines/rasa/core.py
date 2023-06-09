@@ -60,13 +60,13 @@ class RasaEngine(Engine):
     @classmethod
     def __check_rasa_version(cls):
         """Check that the Rasa tool is at the right version."""
-        is_right_version = rasa.__version__ == "3.2.2"
+        is_right_version = rasa.__version__ == "3.5.11"
         if not is_right_version:
             raise Exception(
-                "Rasa needs to be at version 3.2.2. "
+                "Rasa needs to be at version 3.5.11. "
                 "Please install it manually using:"
                 "\n"
-                "pip install rasa==3.2.2"
+                "pip install rasa==3.5.11"
             )
 
     def __post_init__(self):

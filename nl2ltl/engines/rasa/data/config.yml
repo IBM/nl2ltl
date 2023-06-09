@@ -1,11 +1,11 @@
 # Configuration for Rasa NLU.
 # https://rasa.com/docs/rasa/nlu/components/
 recipe: default.v1
+assistant_id: nl2ltl
 language: en
 
 pipeline:
   - name: WhitespaceTokenizer
-  - name: RegexFeaturizer
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
   - name: CountVectorsFeaturizer
