@@ -31,9 +31,7 @@ PROMPT_PATH = engine_root / DATA_DIR / "prompt.json"
 class Models(Enum):
     """The set of available GPT language models."""
 
-    DAVINCI = "text-davinci-003"
-    GPT3 = "gpt-3"
-    GPT35 = "gpt-3.5"
+    GPT35 = "gpt-3.5-turbo"
     GPT4 = "gpt-4"
 
 
@@ -105,10 +103,11 @@ def _process_utterance(
     :param filtering: the filter used to remove formulas
     :return: a dict matching formulas to their confidence
     """
-    query = "NL: " + utterance + "\n"
-    prediction = openai.Completion.create(
+    query = f"NL: {utterance}\n"
+    messages = [{"role": "user", "content": prompt + query}]
+    prediction = openai.ChatCompletion.create(
         model=model,
-        prompt=prompt + query,
+        messages=messages,
         temperature=temperature,
         max_tokens=200,
         top_p=1.0,
