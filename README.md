@@ -61,10 +61,6 @@ To use GPT models you need to have an API KEY set as environment variable. To se
 ```bash
 export OPENAI_API_KEY=your_api_key
 ```
-or you specify it within a `.env` file in the root folder of the project:
-```bash
-OPENAI_API_KEY=your_api_key
-```
 
 ## Write your own Engine
 You can easily write your own engine (i.e., intents/entities classifier, 
