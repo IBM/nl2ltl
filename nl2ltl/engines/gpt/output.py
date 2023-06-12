@@ -35,7 +35,7 @@ class _GPTOutputWrapper:
         """Get the predicted pattern."""
         return str(
             cast(
-                Match, re.search("PATTERN: (.*)\n", self.output["choices"][0]["text"])
+                Match, re.search("PATTERN: (.*)\n", self.output["choices"][0]["message"]["content"])
             ).group(1)
         )
 
@@ -45,7 +45,7 @@ class _GPTOutputWrapper:
         return tuple(
             cast(
                 Match,
-                re.search("SYMBOLS: (.*)", self.output["choices"][0]["text"]),
+                re.search("SYMBOLS: (.*)", self.output["choices"][0]["message"]["content"]),
             )
             .group(1)
             .split(", ")
@@ -70,9 +70,9 @@ def parse_gpt_result(
     output: GPTOutput, filtering: Filter = None
 ) -> Dict[Formula, float]:
     """
-    Build a dict of formulas, given the GPT3Output object.
+    Build a dict of formulas, given the GPTOutput object.
 
-    :param output: a GPT3Output instance.
+    :param output: a GPTOutput instance.
     :param filtering: a custom filtering function
     :return: the dictionary of formulas.
     """
