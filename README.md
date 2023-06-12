@@ -4,9 +4,9 @@
 
 [![Python](https://img.shields.io/pypi/pyversions/nl2ltl)](https://img.shields.io/pypi/pyversions/nl2ltl)
 [![PyPI](https://img.shields.io/pypi/v/nl2ltl)](https://img.shields.io/pypi/v/nl2ltl)
-[![Test](https://github.com/IBM/nl2ltl/actions/workflows/test/badge.svg)](https://github.com/IBM/nl2ltl/actions/workflows/test/badge.svg)
-[![Lint](https://github.com/IBM/nl2ltl/actions/workflows/linting/badge.svg)](https://github.com/IBM/nl2ltl/actions/workflows/linting/badge.svg)
-[![Docs](https://github.com/IBM/nl2ltl/actions/workflows/docs/badge.svg)](https://github.com/IBM/nl2ltl/actions/workflows/docs/badge.svg)
+[![Test](https://github.com/IBM/nl2ltl/actions/workflows/test.yml/badge.svg)](https://github.com/IBM/nl2ltl/actions/workflows/test.yml/badge.svg)
+[![Lint](https://github.com/IBM/nl2ltl/actions/workflows/linting.yml/badge.svg)](https://github.com/IBM/nl2ltl/actions/workflows/linting.yml/badge.svg)
+[![Docs](https://github.com/IBM/nl2ltl/actions/workflows/docs.yml/badge.svg)](https://github.com/IBM/nl2ltl/actions/workflows/docs.yml/badge.svg)
 [![codecov](https://codecov.io/github/IBM/nl2ltl/branch/main/graph/badge.svg?token=XdAtl04qo6)](https://codecov.io/github.com/IBM/nl2ltl)
 [![LICENSE](https://img.shields.io/github/license/IBM/nl2ltl?color=purple)](https://img.shields.io/github/license/IBM/nl2ltl?color=purple)
 
