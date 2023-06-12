@@ -27,8 +27,8 @@ class Existence(Template, _UnaryOp):
         """English meaning."""
         return f"Eventually, {self.argument} will happen."
 
-    def to_pltlf(self) -> Formula:
-        """Translate Existence to PLTLf."""
+    def to_ppltl(self) -> Formula:
+        """Translate Existence to PPLTL."""
         return Once(self.argument)
 
 
@@ -50,8 +50,8 @@ class ExistenceTwo(Template, _UnaryOp):
         """English meaning."""
         return f"{self.argument} will happen at least twice."
 
-    def to_pltlf(self) -> Formula:
-        """Translate ExistenceTwo to PLTLf."""
+    def to_ppltl(self) -> Formula:
+        """Translate ExistenceTwo to PPLTL."""
         return Once(And(self.argument, Before(Once(self.argument))))
 
 
@@ -73,8 +73,8 @@ class Absence(Template, _UnaryOp):
         """English meaning."""
         return f"{self.argument} will never happen."
 
-    def to_pltlf(self) -> Formula:
-        """Translate Absence to PLTLf."""
+    def to_ppltl(self) -> Formula:
+        """Translate Absence to PPLTL."""
         return Not(Once(self.argument))
 
 
@@ -99,8 +99,8 @@ class RespondedExistence(Template, _BinaryOp):
             f"before {self.operands[0]}."
         )
 
-    def to_pltlf(self) -> Formula:
-        """Translate RespondedExistence to PLTLf."""
+    def to_ppltl(self) -> Formula:
+        """Translate RespondedExistence to PPLTL."""
         return Implies(Once(self.operands[0]), Once(self.operands[1]))
 
 
@@ -125,8 +125,8 @@ class Response(Template, _BinaryOp):
             f"eventually afterward."
         )
 
-    def to_pltlf(self) -> Formula:
-        """Translate Response to PLTLf."""
+    def to_ppltl(self) -> Formula:
+        """Translate Response to PPLTL."""
         return Not(
             Since(Not(self.operands[1]), And(self.operands[0], Not(self.operands[1])))
         )
@@ -156,8 +156,8 @@ class Precedence(Template, _BinaryOp):
             f"before it."
         )
 
-    def to_pltlf(self) -> Formula:
-        """Translate Precedence to PLTLf."""
+    def to_ppltl(self) -> Formula:
+        """Translate Precedence to PPLTL."""
         return Or(
             Once(
                 And(
@@ -190,6 +190,13 @@ class ChainResponse(Template, _BinaryOp):
             f"{self.operands[1]} (activity {self.operands[1]} can also follow other activities)."
         )
 
+    def to_ppltl(self) -> Formula:
+        """Translate ChainResponse to PPLTL."""
+        return And(
+            Historically(Implies(Before(self.operands[0]), self.operands[1])),
+            Not(self.operands[0]),
+        )
+
 
 class NotCoExistence(Template, _BinaryOp):
     """The NotCoExistence template."""
@@ -209,6 +216,6 @@ class NotCoExistence(Template, _BinaryOp):
         """English meaning."""
         return f"Either activity {self.operands[0]} or {self.operands[1]} can happen, but not both."
 
-    def to_pltlf(self) -> Formula:
-        """Translate NotCoExistence to PLTLf."""
+    def to_ppltl(self) -> Formula:
+        """Translate NotCoExistence to PPLTL."""
         return Implies(Once(self.operands[0]), Not(Once(self.operands[1])))

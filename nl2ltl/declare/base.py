@@ -41,8 +41,9 @@ class Template(Formula):
         """Get the English semantics."""
         raise NotImplementedError("Template's subclasses must implement this method.")
 
-    def to_pltlf(self) -> "Formula":
-        """Get the template translation to PLTLf."""
+    @abstractmethod
+    def to_ppltl(self) -> "Formula":
+        """Get the template translation to PPLTL."""
 
     def __hash__(self):
         """Delegate the computation of the hash to the superclass."""
