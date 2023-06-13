@@ -31,11 +31,23 @@ PROMPT_PATH = engine_root / DATA_DIR / "prompt.json"
 class Models(Enum):
     """The set of available GPT language models."""
 
+    DAVINCI2 = "text-davinci-002"
+    DAVINCI3 = "text-davinci-003"
     GPT35 = "gpt-3.5-turbo"
     GPT4 = "gpt-4"
 
 
 SUPPORTED_MODELS: Set[str] = {v.value for v in Models}
+
+
+class OperationModes(Enum):
+    """The set of available GPT modes."""
+
+    CHAT = "chatCompletion"
+    COMPLETION = "Completion"
+
+
+SUPPORTED_MODES: Set[str] = {v.value for v in OperationModes}
 
 
 class GPTEngine(Engine):
@@ -45,12 +57,14 @@ class GPTEngine(Engine):
         self,
         model: str = Models.GPT4.value,
         prompt: Path = PROMPT_PATH,
+        operation_mode: str = OperationModes.COMPLETION.value,
         temperature: float = 0.5,
     ):
         """GPT LLM Engine initialization."""
-        self.model = model
-        self.prompt = self._load_prompt(prompt)
-        self.temperature = temperature
+        self._model = model
+        self._prompt = self._load_prompt(prompt)
+        self._operation_mode = operation_mode
+        self._temperature = temperature
 
         self._check_consistency()
 
@@ -61,6 +75,7 @@ class GPTEngine(Engine):
         """Run consistency checks."""
         self.__check_openai_version()
         self.__check_model_support()
+        self.__check_operation_mode()
 
     def __check_openai_version(self):
         """Check that the GPT tool is at the right version."""
@@ -81,40 +96,92 @@ class GPTEngine(Engine):
                 f"The LLM model {self.model} is not currently supported by nl2ltl."
             )
 
+    def __check_operation_mode(self):
+        """Check if the operation mode is a supported mode."""
+        is_supported = self.operation_mode in SUPPORTED_MODES
+        if not is_supported:
+            raise Exception(
+                f"The operation mode {self.operation_mode} is not currently supported by nl2ltl."
+            )
+
+    @property
+    def model(self) -> str:
+        """Get the GPT model."""
+        return self._model
+
+    @property
+    def prompt(self) -> str:
+        """Get the GPT prompt."""
+        return self._prompt
+
+    @property
+    def operation_mode(self) -> str:
+        """Get the GPT operation mode."""
+        return self._operation_mode
+
+    @property
+    def temperature(self) -> float:
+        """Get the GPT temperature."""
+        return self._temperature
+
     def translate(
         self, utterance: str, filtering: Filter = None
     ) -> Dict[Formula, float]:
         """From NL to best matching LTL formulas with confidence."""
         return _process_utterance(
-            utterance, self.model, self.prompt, self.temperature, filtering
+            utterance,
+            self.model,
+            self.prompt,
+            self.operation_mode,
+            self.temperature,
+            filtering,
         )
 
 
 def _process_utterance(
-    utterance: str, model: str, prompt: str, temperature: float, filtering: Filter
+    utterance: str,
+    model: str,
+    prompt: str,
+    operation_mode: str,
+    temperature: float,
+    filtering: Filter,
 ) -> Dict[Formula, float]:
     """
     Process NL utterance.
 
     :param utterance: the natural language utterance
-    :param model: the specific GPT model
+    :param model: the GPT model
     :param prompt: the prompt
+    :param operation_mode: the operation mode
     :param temperature: the temperature
     :param filtering: the filter used to remove formulas
     :return: a dict matching formulas to their confidence
     """
     query = f"NL: {utterance}\n"
     messages = [{"role": "user", "content": prompt + query}]
-    prediction = openai.ChatCompletion.create(
-        model=model,
-        messages=messages,
-        temperature=temperature,
-        max_tokens=200,
-        top_p=1.0,
-        frequency_penalty=0.0,
-        presence_penalty=0.0,
-        stop=["\n\n"],
-    )
-    gpt_result: GPTOutput = parse_gpt_output(prediction)
+    if operation_mode == OperationModes.CHAT.value:
+        prediction = openai.ChatCompletion.create(
+            model=model,
+            messages=messages,
+            temperature=temperature,
+            max_tokens=200,
+            top_p=1.0,
+            frequency_penalty=0.0,
+            presence_penalty=0.0,
+            stop=["\n\n"],
+        )
+    else:
+        prediction = openai.Completion.create(
+            model=model,
+            prompt=messages[0]["content"],
+            temperature=temperature,
+            max_tokens=200,
+            top_p=1.0,
+            frequency_penalty=0.0,
+            presence_penalty=0.0,
+            stop=["\n\n"],
+        )
+
+    gpt_result: GPTOutput = parse_gpt_output(prediction, operation_mode)
     matching_formulas: Dict[Formula, float] = parse_gpt_result(gpt_result, filtering)
     return matching_formulas

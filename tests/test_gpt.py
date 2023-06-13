@@ -6,7 +6,7 @@ from typing import Dict
 import pytest
 
 from nl2ltl import translate
-from nl2ltl.engines.gpt.core import GPTEngine
+from nl2ltl.engines.gpt.core import GPTEngine, Models
 from nl2ltl.filters.simple_filters import BasicFilter, GreedyFilter
 
 from .conftest import UtterancesFixtures
@@ -20,7 +20,7 @@ class TestGPT:
         """setup any state specific to the execution of the given class (which
         usually contains tests).
         """
-        cls.gpt_engine = GPTEngine()
+        cls.gpt_engine = GPTEngine(model=Models.DAVINCI3.value)
         cls.basic_filter = BasicFilter()
         cls.greedy_filter = GreedyFilter()
 

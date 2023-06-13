@@ -35,3 +35,15 @@ def pretty(result: Dict[Formula, float]):
         print(f"Declare Template: {str(k)}", end="\n")
         print(f"English meaning:  {k.to_english()}", end="\n")
         print(f"Confidence:       {str(v)}", end="\n\n")
+
+
+def check_(condition: bool, message: str = "") -> None:
+    """
+    User-defined assert.
+
+    This function is useful to avoid the use of the built-in assert statement, which is removed
+        when the code is compiled in optimized mode. For more information, see
+        https://bandit.readthedocs.io/en/1.7.5/plugins/b101_assert_used.html
+    """
+    if not condition:
+        raise AssertionError(message)
