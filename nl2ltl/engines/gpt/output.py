@@ -35,6 +35,7 @@ class _GPTOutputWrapper:
     def pattern(self) -> str:
         """Get the predicted pattern."""
         from nl2ltl.engines.gpt.core import OperationModes
+
         if self.mode == OperationModes.CHAT.value:
             return str(
                 cast(
@@ -57,6 +58,7 @@ class _GPTOutputWrapper:
     def entities(self) -> Tuple[str]:
         """Get the predicted entities."""
         from nl2ltl.engines.gpt.core import OperationModes
+
         if self.mode == OperationModes.CHAT.value:
             return tuple(
                 cast(
