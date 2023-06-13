@@ -7,7 +7,6 @@ from typing import Dict, Match, Set, Tuple, cast
 
 from pylogics.syntax.base import Formula
 
-from nl2ltl.engines.gpt.core import OperationModes
 from nl2ltl.engines.utils import _get_formulas
 from nl2ltl.filters.base import Filter
 
@@ -35,6 +34,7 @@ class _GPTOutputWrapper:
     @property
     def pattern(self) -> str:
         """Get the predicted pattern."""
+        from nl2ltl.engines.gpt.core import OperationModes
         if self.mode == OperationModes.CHAT.value:
             return str(
                 cast(
@@ -56,6 +56,7 @@ class _GPTOutputWrapper:
     @property
     def entities(self) -> Tuple[str]:
         """Get the predicted entities."""
+        from nl2ltl.engines.gpt.core import OperationModes
         if self.mode == OperationModes.CHAT.value:
             return tuple(
                 cast(
