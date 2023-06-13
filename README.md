@@ -15,6 +15,10 @@ NL2LTL is an interface to translate natural language (NL) utterances to
 linear temporal logic (LTL) formulas.
 
 ## Installation
+- from PyPI:
+```bash
+pip install nl2ltl
+```
 - from source (`main` branch):
 ```bash
 pip install git+https://github.com/IBM/nl2ltl.git 
