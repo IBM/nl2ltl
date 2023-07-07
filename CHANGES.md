@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.0.4 (2023-07-07)
+
+* Fix the grounding process of formulas.
+* Improve the english translation of formula templates.
+* Update Pipfile.lock.
+* Add ICAPS reference. 
+
 ## 0.0.3 (2023-06-13)
 
 Main changes:
