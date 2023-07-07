@@ -2,9 +2,9 @@
 
 """Engines utils."""
 import difflib
-from typing import Callable, Dict, Set
+from typing import Callable, Dict, Set, Union
 
-from pylogics.syntax.base import Formula
+from pylogics.syntax.base import AtomName, Formula
 
 from nl2ltl.declare.base import TemplateEnum
 
@@ -47,3 +47,8 @@ def check_(condition: bool, message: str = "") -> None:
     """
     if not condition:
         raise AssertionError(message)
+
+
+def decapitalize(s: Union[str, AtomName]) -> str:
+    """Decapitalize a string."""
+    return s[:1].lower() + s[1:] if s else ""

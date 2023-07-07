@@ -17,12 +17,13 @@ from nl2ltl.declare.declare import (
     RespondedExistence,
     Response,
 )
+from nl2ltl.engines.utils import decapitalize
 
 
 def ground_existence(connectors: Dict[str, float]) -> Set[Template]:
     """Compute ground for Existence."""
     if len(list(connectors)) > 0:
-        return {Existence(Atomic(list(connectors)[0].lower()))}
+        return {Existence(Atomic(decapitalize(list(connectors)[0])))}
     else:
         logging.warning(
             "No valid matching, cannot instantiate Existence with < 1 connectors."
@@ -33,7 +34,7 @@ def ground_existence(connectors: Dict[str, float]) -> Set[Template]:
 def ground_existencetwo(connectors: Dict[str, float]) -> Set[Template]:
     """Compute ground for ExistenceTwo."""
     if len(list(connectors)) > 0:
-        return {ExistenceTwo(Atomic(list(connectors)[0].lower()))}
+        return {ExistenceTwo(Atomic(decapitalize(list(connectors)[0])))}
     else:
         logging.warning(
             "No valid matching, cannot instantiate ExistenceTwo with < 1 connectors."
@@ -44,7 +45,7 @@ def ground_existencetwo(connectors: Dict[str, float]) -> Set[Template]:
 def ground_absence(connectors: Dict[str, float]) -> Set[Template]:
     """Compute ground for Absence."""
     if len(list(connectors)) > 0:
-        return {Absence(Atomic(list(connectors)[0].lower()))}
+        return {Absence(Atomic(decapitalize(list(connectors)[0])))}
     else:
         logging.warning(
             "No valid matching, cannot instantiate Absence with < 1 connectors."
@@ -57,7 +58,8 @@ def ground_respondedexistence(connectors: Dict[str, float]) -> Set[Template]:
     if len(list(connectors)) >= 2:
         return {
             RespondedExistence(
-                Atomic(list(connectors)[0].lower()), Atomic(list(connectors)[1].lower())
+                Atomic(decapitalize(list(connectors)[0])),
+                Atomic(decapitalize(list(connectors)[1])),
             )
         }
     else:
@@ -72,7 +74,8 @@ def ground_response(connectors: Dict[str, float]) -> Set[Template]:
     if len(list(connectors)) >= 2:
         return {
             Response(
-                Atomic(list(connectors)[0].lower()), Atomic(list(connectors)[1].lower())
+                Atomic(decapitalize(list(connectors)[0])),
+                Atomic(decapitalize(list(connectors)[1])),
             )
         }
     else:
@@ -87,7 +90,8 @@ def ground_precedence(connectors: Dict[str, float]) -> Set[Template]:
     if len(list(connectors)) >= 2:
         return {
             Precedence(
-                Atomic(list(connectors)[0].lower()), Atomic(list(connectors)[1].lower())
+                Atomic(decapitalize(list(connectors)[0])),
+                Atomic(decapitalize(list(connectors)[1])),
             )
         }
     else:
@@ -102,7 +106,8 @@ def ground_chainresponse(connectors: Dict[str, float]) -> Set[Template]:
     if len(list(connectors)) >= 2:
         return {
             ChainResponse(
-                Atomic(list(connectors)[0].lower()), Atomic(list(connectors)[1].lower())
+                Atomic(decapitalize(list(connectors)[0])),
+                Atomic(decapitalize(list(connectors)[1])),
             )
         }
     else:
@@ -117,7 +122,8 @@ def ground_notcoexistence(connectors: Dict[str, float]) -> Set[Template]:
     if len(list(connectors)) >= 2:
         return {
             NotCoExistence(
-                Atomic(list(connectors)[0].lower()), Atomic(list(connectors)[1].lower())
+                Atomic(decapitalize(list(connectors)[1])),
+                Atomic(decapitalize(list(connectors)[1])),
             )
         }
     else:

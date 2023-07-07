@@ -16,7 +16,7 @@ class GPTOutput:
     """Dataclass to represent the GPT output."""
 
     pattern: str
-    entities: Tuple[str]
+    entities: Tuple[str, ...]
 
     def __post_init__(self):
         """Do consistency checks after initialization."""
