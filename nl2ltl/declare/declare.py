@@ -121,7 +121,7 @@ class Response(Template, _BinaryOp):
     def to_english(self) -> str:
         """English meaning."""
         return (
-            f"Whenever activity {self.operands[0]} happens, activity {self.operands[1]} has to happen "
+            f"Whenever  {self.operands[0]} happens,  {self.operands[1]} has to happen "
             f"eventually afterward."
         )
 
@@ -152,7 +152,7 @@ class Precedence(Template, _BinaryOp):
     def to_english(self) -> str:
         """English meaning."""
         return (
-            f"Whenever activity {self.operands[1]} happens, activity {self.operands[0]} has to have happened "
+            f"Whenever  {self.operands[1]} happens,  {self.operands[0]} has to have happened "
             f"before it."
         )
 
@@ -186,8 +186,8 @@ class ChainResponse(Template, _BinaryOp):
     def to_english(self) -> str:
         """English meaning."""
         return (
-            f"Every time activity {self.operands[0]} happens, it must be directly followed by activity "
-            f"{self.operands[1]} (activity {self.operands[1]} can also follow other activities)."
+            f"Every time  {self.operands[0]} happens, it must be directly followed by  "
+            f"{self.operands[1]} ( {self.operands[1]} can also follow other activities)."
         )
 
     def to_ppltl(self) -> Formula:
@@ -214,7 +214,7 @@ class NotCoExistence(Template, _BinaryOp):
 
     def to_english(self) -> str:
         """English meaning."""
-        return f"Either activity {self.operands[0]} or {self.operands[1]} can happen, but not both."
+        return f"Either  {self.operands[0]} or {self.operands[1]} can happen, but not both."
 
     def to_ppltl(self) -> Formula:
         """Translate NotCoExistence to PPLTL."""
