@@ -57,7 +57,7 @@ class GPTEngine(Engine):
         self,
         model: str = Models.GPT4.value,
         prompt: Path = PROMPT_PATH,
-        operation_mode: str = OperationModes.COMPLETION.value,
+        operation_mode: str = OperationModes.CHAT.value,
         temperature: float = 0.5,
     ):
         """GPT LLM Engine initialization."""
