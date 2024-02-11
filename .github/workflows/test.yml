@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        python-version: ["3.8"]
+        python-version: ["3.10"]
 
     timeout-minutes: 30
 
@@ -25,8 +25,8 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pytest pytest-cov pytest-randomly hypothesis-pytest
-        pip install -r requirements.txt
+        pip install pytest
+        pip install -e .
     - name: Unit tests and coverage
       run: |
         pytest -k "not gpt" \
@@ -36,7 +36,6 @@ jobs:
         --cov-report=xml \
         --cov-report=html \
         --cov-report=term \
-        --hypothesis-show-statistics
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
