@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.0.5 (2024-02-10)
+
+* Make Rasa an optional package.
+* Update OpenAI GPT models.
+* Update Python version.
+* Update building tools.
+
 ## 0.0.4 (2023-07-07)
 
 * Fix the grounding process of formulas.

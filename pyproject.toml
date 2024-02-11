@@ -1,5 +1,116 @@
-[build-system]
-requires = [
-    "setuptools",
-    "wheel"
+[project]
+name = "nl2ltl"
+version = "0.0.5"
+license = {file = "LICENSE"}
+authors = [
+    { name = "Francesco Fuggitti", email = "francesco.fuggitti@gmail.com" },
+    { name = "Tathagata Chakraborti", email = "tchakra2@ibm.com" },
 ]
+description = "Natural Language (NL) to Linear Temporal Logic (LTL)"
+readme = "README.md"
+requires-python = ">=3.8,<3.11"
+
+keywords = [
+    "natural language processing",
+    "linear temporal logics",
+    "generative ai",
+    "large language models",
+    "process automation",
+    "conversational agents",
+]
+
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Human Machine Interfaces",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+
+dependencies = [
+    "pylogics",
+    "openai"
+]
+
+[project.optional-dependencies]
+rasa = ["rasa==3.6.16"]
+dev = [
+    "codecov",
+    "mkdocs",
+    "markdown-include",
+    "pre-commit",
+    "pytest",
+    "pytest-cov",
+    "ruff",
+    "tox==3.27.1"
+]
+
+[project.urls]
+Repository = "https://github.com/IBM/nl2ltl"
+Issues = "https://github.com/IBM/nl2ltl/issues"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["nl2ltl*"]
+
+[tool.ruff]
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+line-length = 120
+indent-width = 4
+target-version = "py38"
+include = ["nl2ltl/**/*.py", "tests/**/*.py"]
+
+[tool.ruff.lint]
+select = [
+    # Pyflakes
+    "F",
+    # Pycodestyle
+    "E",
+    "W",
+    # isort
+    "I001"
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
