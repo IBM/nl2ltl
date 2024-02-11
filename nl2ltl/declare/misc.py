@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Helper functions."""
 from typing import Sequence, Type
 
@@ -7,9 +5,7 @@ from pylogics.syntax.base import Formula
 from pylogics.syntax.ltl import Atomic
 
 
-def _enforce(
-    condition: bool, message: str = "", exception_cls: Type[Exception] = AssertionError
-):
+def _enforce(condition: bool, message: str = "", exception_cls: Type[Exception] = AssertionError):
     """User-defined assert."""
     if not condition:
         raise exception_cls(message)

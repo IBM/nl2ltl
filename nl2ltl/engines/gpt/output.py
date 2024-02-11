@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Parse GPT output to produce Dict[Formula, Float] result."""
 import re
 from dataclasses import dataclass
@@ -63,26 +61,19 @@ class _GPTOutputWrapper:
             return tuple(
                 cast(
                     Match,
-                    re.search(
-                        "SYMBOLS: (.*)", self.output["choices"][0]["message"]["content"]
-                    ),
+                    re.search("SYMBOLS: (.*)", self.output["choices"][0]["message"]["content"]),
                 )
                 .group(1)
                 .split(", ")
             )
         else:
             return tuple(
-                cast(
-                    Match, re.search("SYMBOLS: (.*)", self.output["choices"][0]["text"])
-                )
-                .group(1)
-                .split(", ")
+                cast(Match, re.search("SYMBOLS: (.*)", self.output["choices"][0]["text"])).group(1).split(", ")
             )
 
 
 def parse_gpt_output(gpt_output: dict, operation_mode: str) -> GPTOutput:
-    """
-    Parse the GPT output.
+    """Parse the GPT output.
 
     :param gpt_output: the json description of the GPT prediction.
     :param operation_mode: the operation mode of the GPT engine.
@@ -95,11 +86,8 @@ def parse_gpt_output(gpt_output: dict, operation_mode: str) -> GPTOutput:
     return gpt_result
 
 
-def parse_gpt_result(
-    output: GPTOutput, filtering: Filter = None
-) -> Dict[Formula, float]:
-    """
-    Build a dict of formulas, given the GPTOutput object.
+def parse_gpt_result(output: GPTOutput, filtering: Filter = None) -> Dict[Formula, float]:
+    """Build a dict of formulas, given the GPTOutput object.
 
     :param output: a GPTOutput instance.
     :param filtering: a custom filtering function

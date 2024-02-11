@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Classes for declare templates."""
 from pylogics.syntax.base import And, Formula, Implies, Not, Or, _BinaryOp, _UnaryOp
 from pylogics.syntax.ltl import Always, Eventually, Next, Until
@@ -120,16 +118,11 @@ class Response(Template, _BinaryOp):
 
     def to_english(self) -> str:
         """English meaning."""
-        return (
-            f"Whenever  {self.operands[0]} happens,  {self.operands[1]} has to happen "
-            f"eventually afterward."
-        )
+        return f"Whenever  {self.operands[0]} happens,  {self.operands[1]} has to happen " f"eventually afterward."
 
     def to_ppltl(self) -> Formula:
         """Translate Response to PPLTL."""
-        return Not(
-            Since(Not(self.operands[1]), And(self.operands[0], Not(self.operands[1])))
-        )
+        return Not(Since(Not(self.operands[1]), And(self.operands[0], Not(self.operands[1]))))
 
 
 class Precedence(Template, _BinaryOp):
@@ -151,10 +144,7 @@ class Precedence(Template, _BinaryOp):
 
     def to_english(self) -> str:
         """English meaning."""
-        return (
-            f"Whenever  {self.operands[1]} happens,  {self.operands[0]} has to have happened "
-            f"before it."
-        )
+        return f"Whenever  {self.operands[1]} happens,  {self.operands[0]} has to have happened " f"before it."
 
     def to_ppltl(self) -> Formula:
         """Translate Precedence to PPLTL."""

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Grounding visitor."""
 import logging
 from typing import Dict, Set
@@ -25,9 +23,7 @@ def ground_existence(connectors: Dict[str, float]) -> Set[Template]:
     if len(list(connectors)) > 0:
         return {Existence(Atomic(decapitalize(list(connectors)[0])))}
     else:
-        logging.warning(
-            "No valid matching, cannot instantiate Existence with < 1 connectors."
-        )
+        logging.warning("No valid matching, cannot instantiate Existence with < 1 connectors.")
         return set()
 
 
@@ -36,9 +32,7 @@ def ground_existencetwo(connectors: Dict[str, float]) -> Set[Template]:
     if len(list(connectors)) > 0:
         return {ExistenceTwo(Atomic(decapitalize(list(connectors)[0])))}
     else:
-        logging.warning(
-            "No valid matching, cannot instantiate ExistenceTwo with < 1 connectors."
-        )
+        logging.warning("No valid matching, cannot instantiate ExistenceTwo with < 1 connectors.")
         return set()
 
 
@@ -47,9 +41,7 @@ def ground_absence(connectors: Dict[str, float]) -> Set[Template]:
     if len(list(connectors)) > 0:
         return {Absence(Atomic(decapitalize(list(connectors)[0])))}
     else:
-        logging.warning(
-            "No valid matching, cannot instantiate Absence with < 1 connectors."
-        )
+        logging.warning("No valid matching, cannot instantiate Absence with < 1 connectors.")
         return set()
 
 
@@ -63,9 +55,7 @@ def ground_respondedexistence(connectors: Dict[str, float]) -> Set[Template]:
             )
         }
     else:
-        logging.warning(
-            "No valid matching, cannot instantiate RespondedExistence with < 2 connectors."
-        )
+        logging.warning("No valid matching, cannot instantiate RespondedExistence with < 2 connectors.")
         return set()
 
 
@@ -79,9 +69,7 @@ def ground_response(connectors: Dict[str, float]) -> Set[Template]:
             )
         }
     else:
-        logging.warning(
-            "No valid matching, cannot instantiate Response with < 2 connectors."
-        )
+        logging.warning("No valid matching, cannot instantiate Response with < 2 connectors.")
         return set()
 
 
@@ -95,9 +83,7 @@ def ground_precedence(connectors: Dict[str, float]) -> Set[Template]:
             )
         }
     else:
-        logging.warning(
-            "No valid matching, cannot instantiate Precedence with < 2 connectors."
-        )
+        logging.warning("No valid matching, cannot instantiate Precedence with < 2 connectors.")
         return set()
 
 
@@ -111,9 +97,7 @@ def ground_chainresponse(connectors: Dict[str, float]) -> Set[Template]:
             )
         }
     else:
-        logging.warning(
-            "No valid matching, cannot instantiate ChainResponse with < 2 connectors."
-        )
+        logging.warning("No valid matching, cannot instantiate ChainResponse with < 2 connectors.")
         return set()
 
 
@@ -127,7 +111,5 @@ def ground_notcoexistence(connectors: Dict[str, float]) -> Set[Template]:
             )
         }
     else:
-        logging.warning(
-            "No valid matching, cannot instantiate NotCoExistence with < 2 connectors."
-        )
+        logging.warning("No valid matching, cannot instantiate NotCoExistence with < 2 connectors.")
         return set()

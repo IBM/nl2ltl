@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Parse Rasa output to produce Dict[Formula, Float] result."""
 from dataclasses import dataclass
 from typing import Any, Dict
@@ -59,8 +57,7 @@ class _RasaOutputWrapper:
 
 
 def parse_rasa_output(rasa_output: dict) -> RasaOutput:
-    """
-    Parse the Rasa output.
+    """Parse the Rasa output.
 
     :param rasa_output: the json description of the RASA prediction.
     :return: a RasaOutput instance.
@@ -74,11 +71,8 @@ def parse_rasa_output(rasa_output: dict) -> RasaOutput:
     return rasa_result
 
 
-def parse_rasa_result(
-    output: RasaOutput, filtering: Filter = None
-) -> Dict[Formula, float]:
-    """
-    Build a dict of formulas, given the RasaOutput object.
+def parse_rasa_result(output: RasaOutput, filtering: Filter = None) -> Dict[Formula, float]:
+    """Build a dict of formulas, given the RasaOutput object.
 
     :param output: a RasaOutput instance.
     :param filtering: a custom filtering function

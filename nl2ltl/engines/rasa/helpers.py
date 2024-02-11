@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """This module contains utilities to call the Lydia tool from Python."""
 import glob
 import os
