@@ -14,6 +14,9 @@
 NL2LTL is an interface to translate natural language (NL) utterances to
 linear temporal logic (LTL) formulas.
 
+> 🏆 NL2LTL won the People's Choice Best System Demonstration Award Runner-Up in the ICAPS 2023 System Demonstration 
+> Track in Prague. Read more about it [here](https://icaps23.icaps-conference.org/demos/papers/6374_paper.pdf).
+
 ## Installation
 - from PyPI:
 ```bash
@@ -27,7 +30,7 @@ pip install git+https://github.com/IBM/nl2ltl.git
 ```bash
 git clone https://github.com/IBM/nl2ltl.git
 cd nl2ltl
-pip install .
+pip install -e .
 ```
 
 ## Quickstart
@@ -57,12 +60,12 @@ For instance, Rasa requires a `.tar.gz` format trained model in the
 `models/` folder to run. To train the model use the available NL2LTL `train(...)` API.
 
 ## NLU Engines
-- [x] [Rasa](https://rasa.com/) intents/entities classifier
 - [x] [GPT-3.x](https://openai.com/api/) large language models
 - [x] [GPT-4](https://openai.com/api/) large language model
+- [x] [Rasa](https://rasa.com/) intents/entities classifier (to use Rasa, please install it with `pip install -e ".[rasa]"`)
 - [ ] [Watson Assistant](https://www.ibm.com/products/watson-assistant) intents/entities classifier -- Planned
 
-To use GPT models you need to have an API KEY set as environment variable. To set it:
+To use GPT models you need to have the OPEN_API_KEY set as environment variable. To set it:
 ```bash
 export OPENAI_API_KEY=your_api_key
 ```
@@ -113,17 +116,15 @@ ltl_formulas = translate(utterance, engine=my_engine, filter=my_filter)
 ## Development
 
 Contributions are welcome! Here's how to set up the development environment:
-- install [Pipenv](https://pipenv-fork.readthedocs.io/en/latest/)
+- set up your preferred virtualenv environment
 - clone the repo: `git clone https://github.com/IBM/nl2ltl.git && cd nl2ltl`
-- install dev dependencies: `pipenv shell --python 3.8 && pipenv install --dev`
+- install dev dependencies: `pip install -e ".[dev]"`
 
 ## Tests
 
 To run tests: `tox`
 
-To run the code tests only: `tox -e py3.8`
-
-To run the code style checks only: `tox -e precommit`
+To run the code tests only: `tox -e py310`
 
 ## Docs
 
@@ -135,6 +136,17 @@ and then go to [http://localhost:8000](http://localhost:8000)
 ## Citing
 
 ```
+@inproceedings{icaps2023fc,
+  author       = {Francesco Fuggitti and  Tathagata Chakraborti},
+  title        = {{NL2LTL} -- A Python Package for Converting Natural Language ({NL}) Instructions to Linear Temporal Logic ({LTL}) Formulas},
+  booktitle    = {{ICAPS}},
+  year         = {2023},
+  note         = {Best System Demonstration Award Runner-Up.},
+  url_code     = {https://github.com/IBM/nl2ltl},
+}
+```
+and
+```
 @inproceedings{aaai2023fc,
   author       = {Francesco Fuggitti and  Tathagata Chakraborti},
   title        = {{NL2LTL} -- A Python Package for Converting Natural Language ({NL}) Instructions to Linear Temporal Logic ({LTL}) Formulas},
@@ -144,15 +156,3 @@ and then go to [http://localhost:8000](http://localhost:8000)
   url_code     = {https://github.com/IBM/nl2ltl},
 }
 ```
-and
-```
-@inproceedings{icaps2023fc,
-  author       = {Francesco Fuggitti and  Tathagata Chakraborti},
-  title        = {{NL2LTL} -- A Python Package for Converting Natural Language ({NL}) Instructions to Linear Temporal Logic ({LTL}) Formulas},
-  booktitle    = {{ICAPS}},
-  year         = {2023},
-  note         = {System Demonstration.},
-  url_code     = {https://github.com/IBM/nl2ltl},
-}
-```
-
