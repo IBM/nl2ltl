@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Subsumptions visitor."""
 from functools import singledispatch
 from typing import Set
@@ -22,9 +20,7 @@ from nl2ltl.declare.declare import (
 @singledispatch
 def subsumptions(formula: Formula) -> Set[Template]:
     """Compute subsumptions for a Formula."""
-    raise NotImplementedError(
-        "subsumption handler not implemented for formula %s" % type(formula)
-    )
+    raise NotImplementedError("subsumption handler not implemented for formula %s" % type(formula))
 
 
 @subsumptions.register

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Tests for GPT engine."""
 from typing import Dict
 
@@ -17,10 +15,10 @@ class TestGPT:
 
     @classmethod
     def setup_class(cls):
-        """setup any state specific to the execution of the given class (which
+        """Setup any state specific to the execution of the given class (which
         usually contains tests).
         """
-        cls.gpt_engine = GPTEngine(model=Models.DAVINCI3.value)
+        cls.gpt_engine = GPTEngine(model=Models.GPT35_INSTRUCT.value)
         cls.basic_filter = BasicFilter()
         cls.greedy_filter = GreedyFilter()
 

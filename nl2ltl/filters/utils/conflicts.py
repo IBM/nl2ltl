@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Conflicts visitor."""
 from functools import singledispatch
 from typing import Set

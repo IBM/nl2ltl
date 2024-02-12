@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Base classes for filters."""
 
 from abc import ABC, abstractmethod
@@ -14,8 +12,6 @@ class Filter(ABC):
     NAME: str
 
     @abstractmethod
-    def enforce(
-        self, output: Dict[Formula, float], entities: Dict[str, float], **kwargs
-    ) -> Dict[Formula, float]:
+    def enforce(self, output: Dict[Formula, float], entities: Dict[str, float], **kwargs) -> Dict[Formula, float]:
         """Enforce filters on output."""
         raise NotImplementedError("Filters must implement this method.")

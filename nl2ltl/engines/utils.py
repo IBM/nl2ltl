@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Engines utils."""
 import difflib
 from typing import Callable, Dict, Set, Union
@@ -14,14 +12,10 @@ def _get_formulas(name: str, args: Dict[str, float]) -> Set[Formula]:
     import nl2ltl.declare.declare
     import nl2ltl.engines.grounding
 
-    class_name_match = difflib.get_close_matches(
-        name, [x.value for x in TemplateEnum], n=1
-    )
+    class_name_match = difflib.get_close_matches(name, [x.value for x in TemplateEnum], n=1)
     grounding_map: Dict[str, Callable] = {}
     for c_name in TemplateEnum:
-        grounding_map[c_name.value] = getattr(
-            nl2ltl.engines.grounding, f"ground_{c_name.value.lower()}"
-        )
+        grounding_map[c_name.value] = getattr(nl2ltl.engines.grounding, f"ground_{c_name.value.lower()}")
 
     grounding_func: Callable = grounding_map[str(class_name_match[0])]
     grounded_formulas: Set[Formula] = grounding_func(args)
@@ -32,14 +26,13 @@ def pretty(result: Dict[Formula, float]):
     """Pretty print Rasa output."""
     print("=" * 150)
     for k, v in result.items():
-        print(f"Declare Template: {str(k)}", end="\n")
+        print(f"Declare Template: {k!s}", end="\n")
         print(f"English meaning:  {k.to_english()}", end="\n")
-        print(f"Confidence:       {str(v)}", end="\n\n")
+        print(f"Confidence:       {v!s}", end="\n\n")
 
 
 def check_(condition: bool, message: str = "") -> None:
-    """
-    User-defined assert.
+    """User-defined assert.
 
     This function is useful to avoid the use of the built-in assert statement, which is removed
         when the code is compiled in optimized mode. For more information, see

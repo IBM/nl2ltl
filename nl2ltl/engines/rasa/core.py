@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-
-"""
-Implementation of the RASA engine.
+"""Implementation of the RASA engine.
 
 Repository:
 
@@ -13,9 +10,15 @@ import shutil
 from pathlib import Path
 from typing import Dict
 
-import rasa
 from pylogics.syntax.base import Formula
-from rasa.core.agent import Agent
+
+from nl2ltl.helpers import requires_optional
+
+try:
+    import rasa
+    from rasa.core.agent import Agent
+except ImportError:
+    rasa = Agent = None
 
 from nl2ltl.engines.base import Engine
 from nl2ltl.engines.rasa import ENGINE_ROOT
@@ -31,6 +34,7 @@ TRAINING_PATH = engine_root / DATA_DIR / "nlu_training.yml"
 MODEL_OUTPUT_PATH = engine_root / "models"
 
 
+@requires_optional
 class RasaEngine(Engine):
     """The RASA engine."""
 
@@ -65,13 +69,13 @@ class RasaEngine(Engine):
 
     def __check_rasa_version(self):
         """Check that the Rasa tool is at the right version."""
-        is_right_version = rasa.__version__ == "3.5.11"
+        is_right_version = rasa.__version__ == "3.6.16"
         if not is_right_version:
             raise Exception(
-                "Rasa needs to be at version 3.5.11. "
+                "Rasa needs to be at version 3.6.16. "
                 "Please install it manually using:"
                 "\n"
-                "pip install rasa==3.5.11"
+                "pip install rasa==3.6.16"
             )
 
     @staticmethod
@@ -90,18 +94,13 @@ class RasaEngine(Engine):
         )
         return Path(result.model)
 
-    def translate(
-        self, utterance: str, filtering: Filter = None
-    ) -> Dict[Formula, float]:
+    def translate(self, utterance: str, filtering: Filter = None) -> Dict[Formula, float]:
         """From NL to best matching LTL formulas with confidence."""
         return _process_utterance(utterance, self.agent, filtering)
 
 
-def _process_utterance(
-    utterance: str, rasa_agent: Agent, filtering: Filter
-) -> Dict[Formula, float]:
-    """
-    Process NL utterance.
+def _process_utterance(utterance: str, rasa_agent: Agent, filtering: Filter) -> Dict[Formula, float]:
+    """Process NL utterance.
 
     :param utterance: the natural language utterance
     :return: a dict with matching formulas and confidence

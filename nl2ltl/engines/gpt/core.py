@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-
-"""
-Implementation of the GPT engine.
+"""Implementation of the GPT engine.
 
 Website:
 
@@ -31,9 +28,8 @@ PROMPT_PATH = engine_root / DATA_DIR / "prompt.json"
 class Models(Enum):
     """The set of available GPT language models."""
 
-    DAVINCI2 = "text-davinci-002"
-    DAVINCI3 = "text-davinci-003"
-    GPT35 = "gpt-3.5-turbo"
+    GPT35_INSTRUCT = "gpt-3.5-turbo-instruct"
+    GPT35_TURBO = "gpt-3.5-turbo"
     GPT4 = "gpt-4"
 
 
@@ -55,7 +51,7 @@ class GPTEngine(Engine):
 
     def __init__(
         self,
-        model: str = Models.GPT4.value,
+        model: str = Models.GPT35_TURBO.value,
         prompt: Path = PROMPT_PATH,
         operation_mode: str = OperationModes.CHAT.value,
         temperature: float = 0.5,
@@ -69,7 +65,7 @@ class GPTEngine(Engine):
         self._check_consistency()
 
     def _load_prompt(self, prompt):
-        return json.load(open(prompt, "r"))["prompt"]
+        return json.load(open(prompt))["prompt"]
 
     def _check_consistency(self) -> None:
         """Run consistency checks."""
@@ -79,30 +75,26 @@ class GPTEngine(Engine):
 
     def __check_openai_version(self):
         """Check that the GPT tool is at the right version."""
-        is_right_version = openai.__version__ == "0.27.8"
+        is_right_version = openai.__version__ == "1.12.0"
         if not is_right_version:
             raise Exception(
-                "OpenAI needs to be at version 0.27.8. "
+                "OpenAI needs to be at version 1.12.0. "
                 "Please install it manually using:"
                 "\n"
-                "pip install openai==0.27.8"
+                "pip install openai==1.12.0"
             )
 
     def __check_model_support(self):
         """Check if the model is a supported model."""
         is_supported = self.model in SUPPORTED_MODELS
         if not is_supported:
-            raise Exception(
-                f"The LLM model {self.model} is not currently supported by nl2ltl."
-            )
+            raise Exception(f"The LLM model {self.model} is not currently supported by nl2ltl.")
 
     def __check_operation_mode(self):
         """Check if the operation mode is a supported mode."""
         is_supported = self.operation_mode in SUPPORTED_MODES
         if not is_supported:
-            raise Exception(
-                f"The operation mode {self.operation_mode} is not currently supported by nl2ltl."
-            )
+            raise Exception(f"The operation mode {self.operation_mode} is not currently supported by nl2ltl.")
 
     @property
     def model(self) -> str:
@@ -124,9 +116,7 @@ class GPTEngine(Engine):
         """Get the GPT temperature."""
         return self._temperature
 
-    def translate(
-        self, utterance: str, filtering: Filter = None
-    ) -> Dict[Formula, float]:
+    def translate(self, utterance: str, filtering: Filter = None) -> Dict[Formula, float]:
         """From NL to best matching LTL formulas with confidence."""
         return _process_utterance(
             utterance,
@@ -146,8 +136,7 @@ def _process_utterance(
     temperature: float,
     filtering: Filter,
 ) -> Dict[Formula, float]:
-    """
-    Process NL utterance.
+    """Process NL utterance.
 
     :param utterance: the natural language utterance
     :param model: the GPT model
@@ -160,7 +149,7 @@ def _process_utterance(
     query = f"NL: {utterance}\n"
     messages = [{"role": "user", "content": prompt + query}]
     if operation_mode == OperationModes.CHAT.value:
-        prediction = openai.ChatCompletion.create(
+        prediction = openai.chat.completions.create(
             model=model,
             messages=messages,
             temperature=temperature,
@@ -171,7 +160,7 @@ def _process_utterance(
             stop=["\n\n"],
         )
     else:
-        prediction = openai.Completion.create(
+        prediction = openai.completions.create(
             model=model,
             prompt=messages[0]["content"],
             temperature=temperature,

@@ -1,10 +1,6 @@
-# -*- coding: utf-8 -*-
-
 """The conftest.py module for pytest."""
 import inspect
 from pathlib import Path
-
-import pytest
 
 import nl2ltl
 

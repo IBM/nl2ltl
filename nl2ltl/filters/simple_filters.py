@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Greedy filter class."""
 from typing import Dict
 
@@ -16,11 +14,8 @@ class BasicFilter(Filter):
     NAME = "basic"
 
     @staticmethod
-    def enforce(
-        output: Dict[Formula, float], entities: Dict[str, float], **kwargs
-    ) -> Dict[Formula, float]:
-        """
-        Enforce conflicts and subsumptions to output formulas.
+    def enforce(output: Dict[Formula, float], entities: Dict[str, float], **kwargs) -> Dict[Formula, float]:
+        """Enforce conflicts and subsumptions to output formulas.
 
         Algorithm:
         - scan the output
@@ -35,11 +30,8 @@ class GreedyFilter(Filter):
     NAME = "greedy"
 
     @staticmethod
-    def enforce(
-        output: Dict[Formula, float], entities: Dict[str, float], **kwargs
-    ) -> Dict[Formula, float]:
-        """
-        Enforce conflicts and subsumptions to output formulas.
+    def enforce(output: Dict[Formula, float], entities: Dict[str, float], **kwargs) -> Dict[Formula, float]:
+        """Enforce conflicts and subsumptions to output formulas.
 
         Algorithm:
         - empty set of formulas

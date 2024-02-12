@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Tests for Rasa engine."""
 from typing import Dict
 
@@ -17,7 +15,7 @@ class TestRasa:
 
     @classmethod
     def setup_class(cls):
-        """setup any state specific to the execution of the given class (which
+        """Setup any state specific to the execution of the given class (which
         usually contains tests).
         """
         cls.rasa_engine = RasaEngine()

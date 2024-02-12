@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """NL2LTLf core module."""
 from typing import Dict
 
@@ -17,11 +15,8 @@ def _call_translation_method(
     return method(utterance, filtering)
 
 
-def translate(
-    utterance: str, engine: Engine, filtering: Filter = None
-) -> Dict[Formula, float]:
-    """
-    From NL to LTLf.
+def translate(utterance: str, engine: Engine, filtering: Filter = None) -> Dict[Formula, float]:
+    """From NL to LTLf.
 
     :param utterance: the natural language utterance to translate.
     :param engine: the engine to use.

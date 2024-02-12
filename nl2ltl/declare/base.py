@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Base classes for declare templates."""
 
 from abc import abstractmethod

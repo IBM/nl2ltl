@@ -1,6 +1,6 @@
 site_name: NL2LTL
 repo_name: 'NL2LTL'
-repo_url: https://github.ibm.com/Francesco-Fuggitti/nl2ltl
+repo_url: https://github.com/IBM/nl2ltl
 
 nav:
 - Home: index.md

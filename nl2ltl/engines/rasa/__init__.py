@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Implementation of the RASA engine."""
 
 import inspect
