@@ -27,6 +27,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest && pip install pytest-cov
         pip install -e .
+        pip install -e ".[rasa]"
     - name: Unit tests and coverage
       run: |
         pytest -k "not gpt" \
