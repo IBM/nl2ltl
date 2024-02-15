@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.0.6 (2024-02-15)
+
+* Use OpenAI v1.12.0.
+* Update OpenAI API calls.
+* Fix default value in greedy filter.
+* Update tests.
+
 ## 0.0.5 (2024-02-10)
 
 * Make Rasa an optional package.
