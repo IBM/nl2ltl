@@ -18,7 +18,11 @@ from nl2ltl.engines.gpt import ENGINE_ROOT
 from nl2ltl.engines.gpt.output import GPTOutput, parse_gpt_output, parse_gpt_result
 from nl2ltl.filters.base import Filter
 
-client = OpenAI()
+try:
+    client = OpenAI()
+except Exception:
+    client = None
+
 engine_root = ENGINE_ROOT
 DATA_DIR = engine_root / "data"
 PROMPT_PATH = engine_root / DATA_DIR / "prompt.json"
