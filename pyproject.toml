@@ -34,7 +34,7 @@ classifiers = [
 
 dependencies = [
     "pylogics",
-    "openai"
+    "openai==1.12.0"
 ]
 
 [project.optional-dependencies]
