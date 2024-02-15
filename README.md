@@ -37,11 +37,11 @@ pip install -e .
 Once you have installed all dependencies you are ready to go with:
 ```python
 from nl2ltl import translate
-from nl2ltl.engines.rasa.core import RasaEngine
+from nl2ltl.engines.gpt.core import GPTEngine, Models
 from nl2ltl.filters.simple_filters import BasicFilter
 from nl2ltl.engines.utils import pretty
 
-engine = RasaEngine()
+engine = GPTEngine()
 filter = BasicFilter()
 utterance = "Eventually send me a Slack after receiving a Gmail"
 
@@ -65,9 +65,10 @@ For instance, Rasa requires a `.tar.gz` format trained model in the
 - [x] [Rasa](https://rasa.com/) intents/entities classifier (to use Rasa, please install it with `pip install -e ".[rasa]"`)
 - [ ] [Watson Assistant](https://www.ibm.com/products/watson-assistant) intents/entities classifier -- Planned
 
-To use GPT models you need to have the OPEN_API_KEY set as environment variable. To set it:
+**NOTE**: To use OpenAI GPT models don't forget to add your `OPEN_API_KEY` in a `.env` file under your project folder. 
+The `.env` file should look like:
 ```bash
-export OPENAI_API_KEY=your_api_key
+OPENAI_API_KEY=your_api_key
 ```
 
 ## Write your own Engine

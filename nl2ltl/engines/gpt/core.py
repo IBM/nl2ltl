@@ -6,12 +6,11 @@ Website:
 
 """
 import json
-import os
 from enum import Enum
 from pathlib import Path
 from typing import Dict, Set
 
-import openai
+from openai import OpenAI
 from pylogics.syntax.base import Formula
 
 from nl2ltl.engines.base import Engine
@@ -19,7 +18,7 @@ from nl2ltl.engines.gpt import ENGINE_ROOT
 from nl2ltl.engines.gpt.output import GPTOutput, parse_gpt_output, parse_gpt_result
 from nl2ltl.filters.base import Filter
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI()
 engine_root = ENGINE_ROOT
 DATA_DIR = engine_root / "data"
 PROMPT_PATH = engine_root / DATA_DIR / "prompt.json"
@@ -75,7 +74,7 @@ class GPTEngine(Engine):
 
     def __check_openai_version(self):
         """Check that the GPT tool is at the right version."""
-        is_right_version = openai.__version__ == "1.12.0"
+        is_right_version = client._version == "1.12.0"
         if not is_right_version:
             raise Exception(
                 "OpenAI needs to be at version 1.12.0. "
@@ -149,7 +148,7 @@ def _process_utterance(
     query = f"NL: {utterance}\n"
     messages = [{"role": "user", "content": prompt + query}]
     if operation_mode == OperationModes.CHAT.value:
-        prediction = openai.chat.completions.create(
+        prediction = client.chat.completions.create(
             model=model,
             messages=messages,
             temperature=temperature,
@@ -160,7 +159,7 @@ def _process_utterance(
             stop=["\n\n"],
         )
     else:
-        prediction = openai.completions.create(
+        prediction = client.completions.create(
             model=model,
             prompt=messages[0]["content"],
             temperature=temperature,
