@@ -4,7 +4,7 @@ from typing import Dict
 import pytest
 
 from nl2ltl import translate
-from nl2ltl.engines.gpt.core import GPTEngine, Models
+from nl2ltl.engines.gpt.core import GPTEngine
 from nl2ltl.filters.simple_filters import BasicFilter, GreedyFilter
 
 from .conftest import UtterancesFixtures
@@ -18,7 +18,7 @@ class TestGPT:
         """Setup any state specific to the execution of the given class (which
         usually contains tests).
         """
-        cls.gpt_engine = GPTEngine(model=Models.GPT35_INSTRUCT.value)
+        cls.gpt_engine = GPTEngine()
         cls.basic_filter = BasicFilter()
         cls.greedy_filter = GreedyFilter()
 

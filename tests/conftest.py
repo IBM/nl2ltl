@@ -13,8 +13,8 @@ DOCS_DIRECTORY = ROOT_DIRECTORY / "docs"
 
 class UtterancesFixtures:
     utterances = [
-        "whenever I get a Slack, send a Gmail",
-        "Invite Sales employees to Thursday's meeting",
-        "If a new Eventbrite is created, alert me through Slack",
-        "send me a Slack whenever I get a Gmail",
+        "whenever I get a Slack, send a Gmail.",
+        "Invite Sales employees.",
+        "If a new Eventbrite is created, alert me through Slack.",
+        "send me a Slack whenever I get a Gmail.",
     ]

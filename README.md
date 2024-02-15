@@ -65,10 +65,10 @@ For instance, Rasa requires a `.tar.gz` format trained model in the
 - [x] [Rasa](https://rasa.com/) intents/entities classifier (to use Rasa, please install it with `pip install -e ".[rasa]"`)
 - [ ] [Watson Assistant](https://www.ibm.com/products/watson-assistant) intents/entities classifier -- Planned
 
-**NOTE**: To use OpenAI GPT models don't forget to add your `OPEN_API_KEY` in a `.env` file under your project folder. 
-The `.env` file should look like:
+**NOTE**: To use OpenAI GPT models don't forget to add the `OPEN_API_KEY` environment
+variable with:
 ```bash
-OPENAI_API_KEY=your_api_key
+export OPENAI_API_KEY=your_api_key
 ```
 
 ## Write your own Engine
@@ -119,7 +119,11 @@ ltl_formulas = translate(utterance, engine=my_engine, filter=my_filter)
 Contributions are welcome! Here's how to set up the development environment:
 - set up your preferred virtualenv environment
 - clone the repo: `git clone https://github.com/IBM/nl2ltl.git && cd nl2ltl`
+- install dependencies: `pip install -e .`
 - install dev dependencies: `pip install -e ".[dev]"`
+- install pre-commit: `pre-commit install`
+- sign-off your commits using the `-s` flag in the commit message to be compliant with 
+the [DCO](https://developercertificate.org/)
 
 ## Tests
 
