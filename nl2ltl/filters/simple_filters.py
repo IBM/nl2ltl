@@ -3,6 +3,7 @@ from typing import Dict
 
 from pylogics.syntax.base import Formula
 
+from nl2ltl.declare.base import Template
 from nl2ltl.filters.base import Filter
 from nl2ltl.filters.utils.conflicts import conflicts
 from nl2ltl.filters.utils.subsumptions import subsumptions
@@ -44,7 +45,7 @@ class GreedyFilter(Filter):
         """
         result_set = set()
 
-        highest_scoring_formula = max(output, key=output.get)
+        highest_scoring_formula = max(output, key=output.get, default=Template)
         formula_conflicts = conflicts(highest_scoring_formula)
         formula_subsumptions = subsumptions(highest_scoring_formula)
 

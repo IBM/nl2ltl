@@ -40,7 +40,7 @@ class _GPTOutputWrapper:
                     Match,
                     re.search(
                         "PATTERN: (.*)\n",
-                        self.output["choices"][0]["message"]["content"],
+                        self.output.choices[0].message.content,
                     ),
                 ).group(1)
             )
@@ -48,7 +48,7 @@ class _GPTOutputWrapper:
             return str(
                 cast(
                     Match,
-                    re.search("PATTERN: (.*)\n", self.output["choices"][0]["text"]),
+                    re.search("PATTERN: (.*)\n", self.output.choices[0].text),
                 ).group(1)
             )
 
@@ -61,15 +61,13 @@ class _GPTOutputWrapper:
             return tuple(
                 cast(
                     Match,
-                    re.search("SYMBOLS: (.*)", self.output["choices"][0]["message"]["content"]),
+                    re.search("SYMBOLS: (.*)", self.output.choices[0].message.content),
                 )
                 .group(1)
                 .split(", ")
             )
         else:
-            return tuple(
-                cast(Match, re.search("SYMBOLS: (.*)", self.output["choices"][0]["text"])).group(1).split(", ")
-            )
+            return tuple(cast(Match, re.search("SYMBOLS: (.*)", self.output.choices[0].text)).group(1).split(", "))
 
 
 def parse_gpt_output(gpt_output: dict, operation_mode: str) -> GPTOutput:

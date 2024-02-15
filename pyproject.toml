@@ -1,6 +1,6 @@
 [project]
 name = "nl2ltl"
-version = "0.0.5"
+version = "0.0.6"
 license = {file = "LICENSE"}
 authors = [
     { name = "Francesco Fuggitti", email = "francesco.fuggitti@gmail.com" },
@@ -34,7 +34,7 @@ classifiers = [
 
 dependencies = [
     "pylogics",
-    "openai"
+    "openai==1.12.0"
 ]
 
 [project.optional-dependencies]
